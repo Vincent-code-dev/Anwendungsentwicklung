@@ -1,0 +1,41 @@
+import socket
+from psutil import virtual_memory
+import platform
+import re
+import uuid
+import json
+import os
+import logging
+import shutil
+import sys
+
+stdoutOrigin=sys.stdout
+sys.stdout = open("output.txt", "w")
+
+# Function to display specifications
+def get_host_name_ip():
+    try:
+        host_name = socket.gethostname()
+        host_ip = socket.gethostbyname(host_name)
+        print("Hostname : ", host_name)
+        print("IP : ", host_ip)
+    except get_host_name_ip():
+        print("Unable to get IP or hostname")
+
+
+def get_the_specifications():
+    try:
+        print("=" * 40, "System Information", "=" * 40)
+        uname = platform.uname()
+        print(f"System: {uname.system}")
+        print(f"Release: {uname.release}")
+        print(f"version: {uname.version}")
+        print(f"Machine: {uname.machine}")
+        print(f"Processor: {uname.processor}")
+        print(f"RAM: {virtual_memory()}")
+    except:
+        print("unable to get any specifications")
+
+
+get_host_name_ip()  # Function call
+get_the_specifications()  # Function call
